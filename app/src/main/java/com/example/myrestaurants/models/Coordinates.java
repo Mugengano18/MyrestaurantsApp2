@@ -1,10 +1,13 @@
 
-package com.example.myrestaurants;
+package com.example.myrestaurants.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Center {
+import org.parceler.Parcel;
+
+@Parcel
+public class Coordinates {
 
     @SerializedName("latitude")
     @Expose
@@ -17,7 +20,7 @@ public class Center {
      * No args constructor for use in serialization
      * 
      */
-    public Center() {
+    public Coordinates() {
     }
 
     /**
@@ -25,7 +28,7 @@ public class Center {
      * @param longitude
      * @param latitude
      */
-    public Center(Double latitude, Double longitude) {
+    public Coordinates(Double latitude, Double longitude) {
         super();
         this.latitude = latitude;
         this.longitude = longitude;

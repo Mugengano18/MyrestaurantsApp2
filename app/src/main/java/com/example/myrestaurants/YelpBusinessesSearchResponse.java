@@ -2,6 +2,9 @@
 package com.example.myrestaurants;
 
 import java.util.List;
+
+import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.models.Region;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

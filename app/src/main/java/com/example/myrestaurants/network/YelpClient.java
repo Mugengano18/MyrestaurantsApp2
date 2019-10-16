@@ -1,5 +1,7 @@
-package com.example.myrestaurants;
+package com.example.myrestaurants.network;
 
+
+import com.example.myrestaurants.network.YelpApi;
 
 import java.io.IOException;
 
@@ -11,8 +13,8 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import static com.example.myrestaurants.Constants.YELP_API_KEY;
-import static com.example.myrestaurants.Constants.YELP_BASE_URL;
+import static com.example.myrestaurants.models.Constants.YELP_API_KEY;
+import static com.example.myrestaurants.models.Constants.YELP_BASE_URL;
 
 public class YelpClient {
     private static Retrofit retrofit = null;

@@ -1,4 +1,6 @@
-package com.example.myrestaurants;
+package com.example.myrestaurants.network;
+
+import com.example.myrestaurants.YelpBusinessesSearchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
