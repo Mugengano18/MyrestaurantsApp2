@@ -5,13 +5,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.myrestaurants.adapters.MyRestaurantsArrayAdapter;
 import com.example.myrestaurants.adapters.RestaurantListAdapter;
 import com.example.myrestaurants.models.Business;
+import com.example.myrestaurants.models.Category;
+import com.example.myrestaurants.models.Constants;
 import com.example.myrestaurants.network.YelpApi;
 import com.example.myrestaurants.network.YelpClient;
 
@@ -25,8 +35,9 @@ import retrofit2.Response;
 
 public class RestaurantListActivity extends AppCompatActivity{
 //    public static final String TAG = MainActivity.class.getSimpleName();
-////    @BindView(R.id.locationTextView) TextView mLocationTextView;
-////    @BindView(R.id.listView) ListView mListView;
+//    @BindView(R.id.locationTextView) TextView mLocationTextView;
+//    @BindView(R.id.listView)
+//ListView mListView;
 //@BindView(R.id.recyclerView)
 //RecyclerView mRecyclerView;
 //    private RestaurantListAdapter mAdapter;
@@ -55,7 +66,7 @@ public class RestaurantListActivity extends AppCompatActivity{
 ////        mLocationTextView.setText("Here are all the restaurants near: " + location);
 //        YelpApi client = YelpClient.getClient();
 //
-//        Call<YelpBusinessesSearchResponse> call = client.getRestaurants(location, "restaurants");
+//        Call<YelpBusinessesSearchResponse> call = client.getRestaurants(location, "women clothes");
 //        call.enqueue(new Callback<YelpBusinessesSearchResponse>() {
 //            @Override
 //            public void onResponse(Call<YelpBusinessesSearchResponse> call, Response<YelpBusinessesSearchResponse> response) {
@@ -112,9 +123,9 @@ public class RestaurantListActivity extends AppCompatActivity{
 //
 //    private void hideProgressBar() {
 //        mProgressBar.setVisibility(View.GONE);
-//    }
-//
-//
+//    }}
+
+
 
     private static final String TAG = RestaurantListActivity.class.getSimpleName();
 
@@ -122,6 +133,8 @@ public class RestaurantListActivity extends AppCompatActivity{
     @BindView(R.id.errorTextView) TextView mErrorTextView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
 
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
     private RestaurantListAdapter mAdapter;
 
     public List<Business> restaurants;
@@ -132,6 +145,13 @@ public class RestaurantListActivity extends AppCompatActivity{
         setContentView(R.layout.activity_restaurants);
         ButterKnife.bind(this);
 
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+        Log.d("Shared Pref Location", mRecentAddress);
+
+        if (mRecentAddress != null) {
+            getRestaurants(mRecentAddress);
+        }
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
 
@@ -166,6 +186,11 @@ public class RestaurantListActivity extends AppCompatActivity{
             }
 
         });
+
+
+    }
+
+    private void getRestaurants(String mRecentAddress) {
     }
 
     private void showFailureMessage() {

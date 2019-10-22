@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:src="@drawable/background" />
+        android:src="@drawable/homy" />
 
     <TextView
         android:id="@+id/appNameTextView"
@@ -17,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
-        android:text="MyRestaurants"
+        android:text="Restaurants"
         android:textColor="@color/colorTextIcons"
         android:textSize="40sp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         android:id="@+id/locationEditText"
         android:background="@color/colorTextIcons"
         android:layout_above="@+id/findRestaurantsButton"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="100dp"
         android:padding="5dp"
         android:hint="Enter Zip Code"
         android:layout_centerHorizontal="true" />
